@@ -354,3 +354,28 @@ let greet = `Hello ${name}!`
 console.log(greet); //Hello Kenny!
 ```
 - ECMAScript 6, 2016, 2017
+
+# NodeJS Concepts
+1. NodeJS basics
+	- How to run NodeJS via CLI.
+	- How to exit from NodeJS app in CLI.
+2. Reading environment variables.
+	- Bash
+	- Javascript
+	- .env file
+	- .env file in Javascript
+3. NodeJS REPL (Read-Eval-Print-Loop)
+	- Get arguments from CLI
+4. NodeJS I/O
+	- Output from CLI
+	- Input from CLI
+5. Module
+	- Import modules
+	- Export modules
+6. NPM (Node Package Manager)
+	- Installing all dependecies
+	- Installing a single package
+	- Updating packages
+	- Versioning
+	- Running Tasks
+7. Package.json
