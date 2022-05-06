@@ -323,26 +323,259 @@ x = 1;
 - [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions#calling_functions)
 	- Defining functions
 		- Function declarations
+		```javascript
+		function fn(parameter) {
+			return parameter;
+		}
+		```
 		- Function expressions
+		```javascript
+		// anonymous function
+		const fn = function(parameter) {
+			return parameter;
+		}
+		
+		var call_fn = fn(11);//11
+		```
+		
+		```javascript
+		const fn = function fn_name(parameter) {
+			return parameter;
+		}
+		
+		var call_fn = fn(11); //11
+		```
+		
+		```javascript
+		function main_fn(fn, parameter){
+			// fn(5) will return 6, + parameter = 5
+			add_passed_parameters = fn(5) + parameter;
+			return add_passed_parameters;
+		}
+
+		const passed_fn = function fn_name(parameter) {
+			return parameter + 1;
+		}
+
+		var call_fn = main_fn(passed_fn, 5);
+		console.log(call_fn); //11
+		```
 	- Calling functions
+	```javascript
+	function fn(parameter) {
+		return parameter;
+	}
+	
+	// calling function
+	fn(11);
+	```
+	
+	```javascript
+	// recursive function from 11 to 0
+	function fn(parameter) {
+		if(parameter >= 0) 
+			return 0;
+		else
+			return fn(parameter) - 1;
+	}
+
+	fn(11); // 0
+	```
+	
 	- Function scope
+	```javascript
+	// global variable
+	let global_name = "Kenny";
+	
+	// global function
+	function global_fn() {
+		return global_name;
+	}
+	
+	console.log(global_fn()); //Kenny
+	
+	// nested function
+	function nested_fn() {
+		let global_name = "Nested Kenny"
+		
+		function local_fn() {
+			return global_name;
+		}
+		
+		return local_fn();
+	}
+	
+	console.log(nested_fn()); //Nested Kenny
+	
+	```
 	- Scope and the function stack
-		- Recursion
+		- Recursion: Can be called by the following:
+			```javascript
+			let fn = function fn_name() {
+				// statements go here
+			}
+			```
+			- The function's name: fn_name()
+			- arguments.callee()
+			- An in-scope variable that refers to the function: fn()
 		- Nested functions and closures
-		- Preservation of variables
+		```javascript
+		function outer_fn(outer) {
+					
+			function inner_fn(inner) {
+				return outer + inner;
+			}
+			
+			return inner_fn;
+		}
+
+		set_outer_fn = outer_fn(5);//sets outer function to always have the parameter 5
+		call_inner_fn = set_outer_fn(6);//11
+
+		call_fn = outer_fn(5)(6); //11
+
+		console.log(call_inner_fn);
+		console.log(call_fn);
+		```
+		- Preservation of variables: On the example above, the 'outer' parameter's value is preserved while calling 'inner_fn' function.
 		- Multiply-nested functions
-		- Name conflicts
+		```javascript
+		function A(x) {
+			function B(y) {
+				function C(z) {
+					console.log(x + y + z);
+				}
+				C(3);
+			}
+			B(2);
+		}
+		A(1); // logs 6 (1 + 2 + 3)
+		```
+		- Name conflicts: Inner most scope takes precedence upon name duplication.
+		```javascript
+		function outer_fn() {
+			var parameter = 5;
+			function inner_fn(parameter) {
+				return parameter * 2;
+			}
+			return inner_fn;
+		}
+
+		outer_fn()(10); // returns 20 from 'inner_fn'
+		```
 	- Closures
-	- Using the arguments object
+	```javascript
+	
+	function outer_fn(outer) {
+			
+		// 'inner_fn' has access to the 'outer' variable
+		// 'inner_fn' can't be diretly called outside becuse of 'outer_fn'
+		function inner_fn(inner) {
+			return outer + inner; 
+		}
+		
+		// returning 'inner_fn' exposes it outside 'outer_fn' scope
+		return inner_fn;
+	}
+
+	set_outer_fn = outer_fn(5);//sets outer function to always have the parameter 5
+	call_inner_fn = set_outer_fn(6);//11
+
+	call_fn = outer_fn(5)(6); //11
+
+	console.log(call_inner_fn);
+	console.log(call_fn);
+	```
+	```javascript
+	var createPerson = function(name) {
+		let job;
+		
+		return {
+			setName: function(newName) {
+				name = newName;
+			},
+			getName: function() {
+				return name;
+			},
+			getJob: function() {
+				return job;
+			},
+			setJob: function(newJob) {
+				job = newJob;
+			},
+		}
+	}
+
+	let person = createPerson("Kenny");
+	person.getName(); //Kenny
+
+	person.setName("Will");
+	person.getName(); // Will
+	person.setJob("Developer");
+	person.getJob(); // Developer
+	```
+	- Using the arguments object: Maintained in an array-like object.
+	```javascript
+	arguments[i];
+	```
 	- Function parameters
-		- Default parameters
+		- Default parameters: Parameters always starts as 'undefined'.
 		- Without default parameters (pre-ECMAScript 2015)
+		```javascript
+		function greet(name) {
+			name = typeof name !== 'undefined'? name:"Kenny";
+			return name;
+		}
+		```
 		- With default parameters (post-ECMAScript 2015)
-		- Rest parameters
+		```javascript
+		function greet(name = "Kenny") {
+			return name;
+		}
+		```		
+		- [Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters):Allows indefinite amounts of arguments.
+		```javascript
+		function sum(parameter, ...theArgs) {
+			return theArgs.map(arg => parameter + arg);
+		}
+
+		let array = sum(1,2,3,4,5); //[3,4,5,6]
+		console.log(array);
+		```	
 	- Arrow functions
 		- Shorter functions
+		```javascript
+		let non_arrow = function(parameter) {
+			// insert statements here.
+		}
+		
+		let arrow = arr_parameter => {
+			// insert statements here.
+		}		
+		```
 		- No separate 'this'
+		```javascript
+		let non_arrow = function(parameter) {
+			// insert statements here.
+		}
+		
+		let arrow = arr_parameter => {
+			// insert statements here.
+		}		
+		```
 	- Predefined functions
+	```javascript
+	function Person() {
+		const self = this;
+		
+		self.age = 0;
+		
+		setInterval(function growUp() {
+			self.age++;
+		} , 1000);
+	}
+	
+	```
 - Loops
 - Scopes
 - Arrays
