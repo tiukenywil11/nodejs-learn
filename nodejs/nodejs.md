@@ -576,9 +576,80 @@ x = 1;
 	}
 	
 	```
-- Loops
-- Scopes
-- Arrays
+- [Loops](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#labeled_statement)
+	- 'for' statement
+	```javascript
+	for (let i = 0; i < 5; i++) {
+		console.log(`iterate: ${i}`);
+	}
+	```
+	- 'do...while' statement
+	```javascript
+	do {
+		// insert statement here
+	} while(condition)
+	```
+	- 'while' statement
+	```javascript
+	while(condition) {
+		// insert statement here
+	}
+	```
+	- 'labeled' statement
+	```javascript
+	label:
+		statement
+	```
+	- 'break' statement
+	```javascript
+	break;
+	break [label];
+	```
+	- 'continue' statement
+	```javascript
+	continue;
+	continue [label];
+	```
+	- 'for...in' statement: iterates a specified variable over all the enumerable properties of an object
+	```javascript
+	for (variable in object) {
+		// insert statement here
+	}
+	```
+	- 'for...of' statement: Loop iterating over iterable objects (including Array, Map, Set, arguments object and so on)
+	```
+	for (variable of object){
+		// insert statement here
+	}
+  ```
+- [Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	- **Examples (Will populate these)**
+		- Creating an array
+		- Create a string from an array
+		- Access an array item by index
+		- Find the index of an item in an array
+		- Check if an array contains a certain item
+		- Append an item to an array
+		- Remove the last item from an array-like
+		- Remove multiple items from the end of an array
+		- Truncate an array down to just its fist N items
+		- Remove the first item from an array
+		- Remove multiple items from thr beginning of an array-like
+		- Add a new first item to an array
+		- Remove a single item by index
+		- Remove multiple items by index
+		- Replace multiple items in an array
+		- Iterate over an array
+		- Call a function on each element in an array
+		- Merge multiple arrays together
+		- Copy an array
+		- Grouping the elements of an array
+	- **Advanced examples (Will populate these)**
+		- Creating a two-dimensional array
+		- Using an array to tabulate a set of values
+	- Notes
+		- Relationship between length and numerical properties
+		- Creating an array using the result match
 - [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 ```javascript
 // wrapping strings in ``(backticks) and calling variable with ${} within the backticks.
@@ -611,4 +682,69 @@ console.log(greet); //Hello Kenny!
 	- Updating packages
 	- Versioning
 	- Running Tasks
-7. Package.json
+7. Packages
+	- package.json
+	- package-lock.json
+	- Check nstalled version of NPM package
+	- Install an older version of NPM package
+	- Update all NPM packages to latest
+	- Semantic versioning
+	- Uninstall NPM package
+	- Global or local
+	- Dependencis, and dev dependecies
+	- NPX package runner
+8. Event loop
+	- process.nextTick()
+	- setImmediate()
+	- Javascript timers
+		- setTimeout()
+		- Zero delay
+		- setInterval()
+		- Recursive setTimeout()
+	- **[Javascript Asynchronous Programming (Callbacks)](https://nodejs.dev/learn/javascript-asynchronous-programming-and-callbacks)**: Need to review.
+		- Asynchronicity in Programming Languages
+		- Javascript
+		- Callbacks
+		- Error handling on callbacks
+		- Limitations on callbacks
+		- Alternatives to callbacks
+	- **[Javascript Promises](https://nodejs.dev/learn/understanding-javascript-promises)**: Need to review.
+		- Creating a promise
+		- Consuming a promise
+		- Chaining promises
+		- Handling error
+		- Cascading errors
+		- Orchetrating promises
+			- Promise.all()
+			- Promise.race()
+			- Promise.any()
+	- Modern Asynchronous Javascript with Async and Await
+		- Example
+		- Multiple asyn funtions in series
+	- **[Event Emitter](https://nodejs.dev/learn/the-nodejs-event-emitter)**: Need to review
+	- Building an HTTP server
+		- Get request
+		- Post request
+		- Put request
+		- Delete request
+	- Get HTTP request body data
+	- File system module
+		- **[File descriptors](https://nodejs.dev/learn/working-with-file-descriptors-in-nodejs)**: Need to review
+		- File stat()
+		- Reading files
+		- Writing files
+			- Write
+			- Append
+	- Paths
+		- dirname
+		- basename
+		- extname
+	- Folders
+		- Check if folder exists
+		- Create a new folder
+		- Read the content of directory
+		- Rename a folder
+		- Remove a folder
+	- [Filesystem module](https://nodejs.dev/learn/the-nodejs-fs-module): Traverses file system.
+	- [Path module](https://nodejs.dev/learn/the-nodejs-path-module): Parses paths.
+	
