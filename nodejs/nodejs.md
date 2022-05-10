@@ -747,4 +747,30 @@ console.log(greet); //Hello Kenny!
 		- Remove a folder
 	- [Filesystem module](https://nodejs.dev/learn/the-nodejs-fs-module): Traverses and manipulates files from file system.
 	- [Path module](https://nodejs.dev/learn/the-nodejs-path-module): Parses paths.
-	
+	- [OS module](https://nodejs.dev/learn/the-nodejs-os-module): Module to help access local machine's information.
+	- [Events module](https://nodejs.dev/learn/the-nodejs-events-module): Module to help with events.
+		- Event emitter
+	- [HTTP module](https://nodejs.dev/learn/the-nodejs-http-module): Module to help handle server requests.
+		- Methods
+		- Status Codes
+	- [Buffer](https://nodejs.dev/learn/nodejs-buffers): Chunk of memory allocated to Javascript.
+		- Creating a buffer
+		- Using a buffer
+	- [Streams](https://nodejs.dev/learn/nodejs-streams): Used for handling asynchronous data.
+		- Create readable stream
+		- Create writabl stream
+		- Get data from readable stream
+		- Send data to writable stream
+		- Create a transform stream
+	- Development vs production
+	- Error handling
+		- Creating exceptions
+		- Error objects
+		- Handling exceptions
+		- Catching uncaught exceptions
+		- Exceptions with promises
+		- Error handling with aysnc/await
+	- Log an object
+	- Optional: [Typescript](https://nodejs.dev/learn/nodejs-with-typescript)
+	- Optional: [WebAsembly](https://nodejs.dev/learn/nodejs-with-webassembly)
+		
