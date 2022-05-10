@@ -745,6 +745,6 @@ console.log(greet); //Hello Kenny!
 		- Read the content of directory
 		- Rename a folder
 		- Remove a folder
-	- [Filesystem module](https://nodejs.dev/learn/the-nodejs-fs-module): Traverses file system.
+	- [Filesystem module](https://nodejs.dev/learn/the-nodejs-fs-module): Traverses and manipulates files from file system.
 	- [Path module](https://nodejs.dev/learn/the-nodejs-path-module): Parses paths.
 	
