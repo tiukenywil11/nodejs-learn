@@ -122,4 +122,67 @@ return storedData;
 	- It gives a `11` because it is now initialized.
 ![13_solidity](./static/images/13_remix_transact.png)
 
+# Developing a sub currency.
 
+1. Reverse engineering a more advanced Solidity source code found [here](https://docs.soliditylang.org/en/v0.8.13/introduction-to-smart-contracts.html#subcurrency-example)
+- In Remix, create new Solidity contract called 'Coin.sol'.
+```javascript
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.4;
+
+contract Coin {
+    // The keyword "public" makes variables
+    // accessible from other contracts
+    address public minter;
+    mapping (address => uint) public balances;
+
+    // Events allow clients to react to specific
+    // contract changes you declare
+    event Sent(address from, address to, uint amount);
+
+    // Constructor code is only run when the contract
+    // is created
+    constructor() {
+        minter = msg.sender;
+    }
+
+    // Sends an amount of newly created coins to an address
+    // Can only be called by the contract creator
+    function mint(address receiver, uint amount) public {
+        require(msg.sender == minter);
+        balances[receiver] += amount;
+    }
+
+    // Errors allow you to provide information about
+    // why an operation failed. They are returned
+    // to the caller of the function.
+    error InsufficientBalance(uint requested, uint available);
+
+    // Sends an amount of existing coins
+    // from any caller to an address
+    function send(address receiver, uint amount) public {
+        if (amount > balances[msg.sender])
+            revert InsufficientBalance({
+                requested: amount,
+                available: balances[msg.sender]
+            });
+
+        balances[msg.sender] -= amount;
+        balances[receiver] += amount;
+        emit Sent(msg.sender, receiver, amount);
+    }
+}
+```
+## Reverse engineer the source code
+2. Analyze and remake, what the codes do per line or block.
+- Add license header, and Solidity compiler version.
+```javascript
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.4;
+```
+- Declare contract called 'Coin': This will be used to mint, and send tokens.
+```javascript
+contract Coin {
+
+}
+```
