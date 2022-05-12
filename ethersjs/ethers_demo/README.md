@@ -1,4 +1,4 @@
-# [POC] EthersJS Connection to Ethereum (Rinkeby)
+# [POC] Ethers(Javascript) Connection to Ethereum (Rinkeby)
 
 ## Setup NodeJS
 1. Initialize NodeJS.
