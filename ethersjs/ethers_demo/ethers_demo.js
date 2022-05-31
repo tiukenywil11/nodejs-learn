@@ -49,29 +49,11 @@ const send_erc20 = async() => {
     
     await get_erc20();
 
-    const send_eth_amount = '0';
-    const current_gas_price = await eth_provider.getGasPrice();
-
-    const value = ethers.utils.parseEther(send_eth_amount);
-    const nonce = await eth_provider.getTransactionCount(my_address, "latest");
-    const gas_limit = ethers.utils.hexlify('0x100000');
-    const gas_price = ethers.utils.hexlify(parseInt(current_gas_price));
-    
     // transfer 0 kenny tokens to 'my_address_2'
-    const contract_data = await kenny_write_contract.transfer(my_address_2, ethers.utils.parseUnits('0', 18));
+    const contract_data = await kenny_write_contract.transfer(my_address_2, ethers.utils.parseUnits('1', 18));
 
-    const tx = {
-        from: my_address,
-        to: my_address_2,
-        value: value,
-        nonce: nonce,
-        gasLimit: gas_limit,
-        gasPrice: gas_price,
-        data: contract_data,
-    }
+    await contract_data.wait();
 
-    const signed_transaction = await eth_wallet_signer.sendTransaction(tx);
-    console.log(signed_transaction);
     await get_erc20();
 }
 
