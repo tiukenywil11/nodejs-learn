@@ -3,7 +3,20 @@ const { ethers } = require("ethers");
 
 // Create connection to Ether RPC
 const INFURA_ID = process.env.INFURA_ID
+
 const eth_provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${INFURA_ID}`)
+
+/* 
+-- For Infura with Secret
+const INFURA_SECRET = process.env.INFURA_SECRET
+
+const eth_provider = new ethers.providers.InfuraProvider(
+	"rinkeby", {
+		projectId: INFURA_ID,
+		projectSecret: INFURA_SECRET,
+	}
+);
+*/
 
 const my_address = '0xe33Cf08406FDB46EaEAA9cC702FDAd54a076C709';
 const my_address_2 = '0xc93F3e583eAbB1f922adFCC340C7343F2871218a';
