@@ -25,16 +25,33 @@ const my_private_key = '20af36d61ebf83bd630f9e8bfe1389a724b1f412d41f22fde01001e8
 
 let eth_wallet = new ethers.Wallet(my_private_key);
 let eth_wallet_signer = eth_wallet.connect(eth_provider)
+// ETH transactions
 
-// Get ETH balance of wallet address
 const balance_fn  = async() => {
     const balance = await eth_provider.getBalance(my_address);
+	const balance_2 = await eth_provider.getBalance(my_address_2);
+	
     console.log(`ETH balance of ${my_address}: ${ethers.utils.formatEther(balance)} ETH`);
+	console.log(`ETH balance of ${my_address_2}: ${ethers.utils.formatEther(balance_2)} ETH`);
 }
 
-balance_fn();
+const send_eth_fn = async() => {
+	
+	await balance_fn();
 
-// Read smart contracts
+	let tx = {
+        to: my_address_2,
+        value: ethers.utils.parseEther("0.001")
+    }
+	
+    const tx_execute = await eth_wallet_chain.sendTransaction(tx)
+	
+	await balance_fn();
+}
+
+// send_eth_fn(); 
+
+// ERC20 tokens transactions
 
 const kenny_token_address = '0x481e9d6a5798430a953e49432e5651f6bea790c5';
 // Array of smart contract funtions
