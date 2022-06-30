@@ -164,10 +164,10 @@
   ```
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber
   ```
-    - For AIP2.0, you can use the following command
-    ```bash
-    LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber --did-exchange --aip 20
-    ```
+  - For AIP2.0, you can use the following command
+  ```bash
+  LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber --did-exchange --aip 20
+  ```
   - Resource: https://github.com/hyperledger/aries-cloudagent-python/tree/main/demo#the-alicefaber-python-demo
 
 3. Connecting the agents.
