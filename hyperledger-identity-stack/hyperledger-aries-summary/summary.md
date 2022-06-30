@@ -156,12 +156,12 @@
   cd aries-cloudagent-python/demo
   ```
   - Run user agent (Alice)
-  ```
-  LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo alice
   ```bash
+  LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo alice
+  ```
   - Open a new 'git-bash' CLI.
   - Run issuer agent (Faber College)
-  ```
+  ```bash
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber
   ```
   - For AIP2.0, you can use the following command
