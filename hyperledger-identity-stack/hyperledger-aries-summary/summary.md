@@ -155,12 +155,15 @@
   ```bash
   cd aries-cloudagent-python/demo
   ```
-  - Run user agent (Alice)
+
+3. Run user agent (Alice)
   ```bash
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo alice
   ```
+
+4. Run issuer agent (Faber College)
   - Open a new 'git-bash' CLI.
-  - Run issuer agent (Faber College)
+
   ```bash
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber
   ```
@@ -170,7 +173,7 @@
   ```
   - Resource: https://github.com/hyperledger/aries-cloudagent-python/tree/main/demo#the-alicefaber-python-demo
 
-3. Connecting the agents.
+5. Connecting the agents.
 - **Issuer agent (Faber) creates a connection request**
   - This will automatically be done upon starting issuer agent.
   - 'Faber' agent will generate the following:
@@ -184,10 +187,10 @@
   - On 'Alice' agent CLI, there would be a field 'Invite details:'
   - Input invitation data from 'Faber' agent. (Must be one line with no 'new lines')
 
-4. Interact between the agents.
+6. Interact between the agents.
   - You can use the option '(3) Send Message' on both Issuer (Faber), and User (Alice) agents.
 
-5. On Issuer agent (Faber), you have additional options
+7. On Issuer agent (Faber), you have additional options
   - (1) Issue Credential: Issues a credential to user agent (Alice).
   - (2) Send Proof Request: Asks for proof of credentials from user agent (Alice).
   - (4) Create New Invitation: Create new invitation (connection request).
