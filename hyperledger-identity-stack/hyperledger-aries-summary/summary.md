@@ -39,6 +39,13 @@
   - Aries Interop Profiles (AIP): Solution for the Aries community for Interoperability upon updates.
     - https://github.com/hyperledger/aries-rfcs/tree/main/concepts/0302-aries-interop-profile
 
+### Aries current agent frameworks implementations
+- Python: https://github.com/hyperledger/aries-cloudagent-python
+- C#: https://github.com/hyperledger/aries-framework-dotnet
+- GoLang: https://github.com/hyperledger/aries-framework-go
+- Javascript (Typescript): https://github.com/hyperledger/aries-framework-javascript
+- Rust: https://github.com/hyperledger/aries-vcx 
+
 ## Labs
 
 ### **Demo:** issuing, holding, proving, and verifying (For Android)
@@ -151,16 +158,20 @@
   - Run user agent (Alice)
   ```
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo alice
-  ```
+  ```bash
   - Open a new 'git-bash' CLI.
   - Run issuer agent (Faber College)
   ```
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber
   ```
+    - For AIP2.0, you can use the following command
+    ```bash
+    LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber --did-exchange --aip 20
+    ```
   - Resource: https://github.com/hyperledger/aries-cloudagent-python/tree/main/demo#the-alicefaber-python-demo
 
 3. Connecting the agents.
-- ** Issuer agent (Faber) creates a connection request**
+- **Issuer agent (Faber) creates a connection request**
   - This will automatically be done upon starting issuer agent.
   - 'Faber' agent will generate the following:
     - Invitation data
@@ -174,13 +185,14 @@
   - Input invitation data from 'Faber' agent. (Must be one line with no 'new lines')
 
 4. Interact between the agents.
-- You can use the option '(3) Send Message' on both Issuer (Faber), and User (Alice) agents.
+  - You can use the option '(3) Send Message' on both Issuer (Faber), and User (Alice) agents.
 
 5. On Issuer agent (Faber), you have additional options
-- (1) Issue Credential: Issues a credential to user agent (Alice).
-- (2) Send Proof Request: Asks for proof of credentials from user agent (Alice).
-- (4) Create New Invitation: Create new invitation (connection request).
-- https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnecting.md
+  - (1) Issue Credential: Issues a credential to user agent (Alice).
+  - (2) Send Proof Request: Asks for proof of credentials from user agent (Alice).
+  - (4) Create New Invitation: Create new invitation (connection request).
+- Resoure: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnecting.md
+
 
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
