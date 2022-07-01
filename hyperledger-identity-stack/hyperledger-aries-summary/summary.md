@@ -46,8 +46,31 @@
 - Javascript (Typescript): https://github.com/hyperledger/aries-framework-javascript
 - Rust: https://github.com/hyperledger/aries-vcx 
 
-## Labs
+### Developer knowledge scope
+- Developer: Needs to learn how to create controllers calling hyperledger indy blockchain.
+- Infrastructure team: Needs to learn how to install and maintain that node.
+- Open source project contributor: Needs to learn the developer details of the ledger project.
+- Business team: Needs to learn use cases of different ledgers.
 
+### Methods to take note of
+1. did:web 
+  - A non-ledger alternative for an organization to publish DIDs using their domain name’s DNS record.
+  - https://w3c-ccg.github.io/did-method-web/
+2. did:github 
+  - A quick’n’dirty way to publish a DID for development purposes.
+  - https://github.com/decentralized-identity/github-did/blob/master/docs/did-method-spec/index.md
+3. did:orb 
+  - uses a protocol called ActivityPub (and other technologies) to enable an entity to publish their DIDs in a trusted way without requiring a distributed ledger.
+  - https://trustbloc.github.io/did-method-orb/
+
+### Indy Genesis file
+- Genesis file: Contains information about the physical endpoints (IP addresses and ports) for some or all of the nodes in the ledger pool, as well as the cryptographic material necessary to securely communicate with those nodes.
+- Magic seed: `000000000000000000000000Trustee1`
+  - Can be found at being generated in the following directory `/var/lib/indy/sandbox`
+  - Resource: https://stackoverflow.com/questions/59089178/hypelerdger-indy-node-seed-value
+
+## Labs
+  
 ### **Demo:** issuing, holding, proving, and verifying (For Android)
 1. Mobile agent 
 - Create and setup mobile agent
@@ -163,7 +186,6 @@
 
 4. Run issuer agent (Faber College)
   - Open a new 'git-bash' CLI.
-
   ```bash
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber
   ```
@@ -171,9 +193,12 @@
   ```bash
   LEDGER_URL=http://dev.greenlight.bcovrin.vonx.io ./run_demo faber --did-exchange --aip 20
   ```
-  - Resource: https://github.com/hyperledger/aries-cloudagent-python/tree/main/demo#the-alicefaber-python-demo
+  - Resource:
+    - https://github.com/hyperledger/aries-cloudagent-python/tree/main/demo#the-alicefaber-python-demo
+	- https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnectingAIP2.md
 
-5. Connecting the agents.
+### Running the agents
+1. Connecting the agents.
 - **Issuer agent (Faber) creates a connection request**
   - This will automatically be done upon starting issuer agent.
   - 'Faber' agent will generate the following:
@@ -187,15 +212,73 @@
   - On 'Alice' agent CLI, there would be a field 'Invite details:'
   - Input invitation data from 'Faber' agent. (Must be one line with no 'new lines')
 
-6. Interact between the agents.
+2. Interact between the agents.
   - You can use the option '(3) Send Message' on both Issuer (Faber), and User (Alice) agents.
 
-7. On Issuer agent (Faber), you have additional options
+3. On Issuer agent (Faber), you have additional options
   - (1) Issue Credential: Issues a credential to user agent (Alice).
   - (2) Send Proof Request: Asks for proof of credentials from user agent (Alice).
   - (4) Create New Invitation: Create new invitation (connection request).
-- Resoure: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnecting.md
+- Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnecting.md
+  
+## **Demo:** Von Network
 
+### Pre-requsite
+- CLI (git-bash)
+- Docker
+- Git
+
+### Environment setup
+1. Starting the Von network: This will act as a local 'verifiable data regisgtry'\
+  - Open a new 'git-bash' CLI.
+  - Clone the git repository for von-network.
+  ```bash
+  git clone https://github.com/bcgov/von-network
+  ```
+  - Navigate to the von-network directory
+  ```bash
+  cd von-network
+  ```
+  - Build von-network
+  ```bash
+  ./manage build
+  ```
+  - Run a Docker instance of von-network
+  ```bash
+  ./manage start --logs
+  ```
+  
+2. Navigate to the webserver: http://localhost:9000
+  - Browse the ledger
+  - View the ledger transactions
+    - Domain: List of ledger transactions (DID, scheme, etc.).
+    - Pool: List of running nodes.
+    - Config: List of changes to the network configurations.
+  - Create a DID
+    - On the homepage, check 'Authenticate a New DID widget'
+      - Choose 'Register from seed'
+      - 'Wallet Seed' field: Type your first name.
+      - 'Alias' field: Type your full name.
+      - Click 'Register DID'.  
+  - View the ledger transactions again and find the newly created DID
+  	- Navigate to 'Domain', then go to the last transaction.
+  - View the ledger genesis file
+    -  From the main menu of the Ledger Browser
+	  - Click on the “Genesis Transaction” link to see the genesis file for the network.
+    - Check connection from genesis transaction to ledger.
+	  - Get the value of 'from' from genesis transaction json file
+      - Navigate to 'Domain', then search for the same value on the ledger.	  
+  - Stop and remove the network
+    - To delete the whole network and data of the ledger.
+	```bash
+	./manage down
+	```
+	- To stop WITHOUT deleting data.
+	```bash
+	./manage stop
+	```
+  
+- Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/vonNetwork.md  
 
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
