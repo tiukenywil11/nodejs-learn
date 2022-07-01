@@ -71,7 +71,7 @@
 
 ## Labs
   
-### **Demo:** issuing, holding, proving, and verifying (For Android)
+## **Demo:** issuing, holding, proving, and verifying (For Android)
 1. Mobile agent 
 - Create and setup mobile agent
   - Download [Trinsic wallet](https://play.google.com/store/apps/details?id=id.streetcred.apps.mobile)
@@ -140,7 +140,7 @@
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/IssuingHoldingProving.md
 - https://www.youtube.com/watch?v=9WZxlrGMA3s
 
-### **Demo:** Connecting two local agents
+## **Demo:** Connecting two local agents
 
 ### Pre-requsite
 - CLI (git-bash)
@@ -249,7 +249,7 @@
   ./manage start --logs
   ```
 
-### Ues the VON Network
+### Use the VON Network
 1. Navigate to the webserver: http://localhost:9000
   
 2. Browse the ledger
