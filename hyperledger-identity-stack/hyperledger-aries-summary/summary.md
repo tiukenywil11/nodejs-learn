@@ -219,6 +219,7 @@
   - (1) Issue Credential: Issues a credential to user agent (Alice).
   - (2) Send Proof Request: Asks for proof of credentials from user agent (Alice).
   - (4) Create New Invitation: Create new invitation (connection request).
+  
 - Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/agentsConnecting.md
   
 ## **Demo:** Von Network
@@ -247,38 +248,76 @@
   ```bash
   ./manage start --logs
   ```
+
+### Ues the VON Network
+1. Navigate to the webserver: http://localhost:9000
   
-2. Navigate to the webserver: http://localhost:9000
-  - Browse the ledger
-  - View the ledger transactions
-    - Domain: List of ledger transactions (DID, scheme, etc.).
-    - Pool: List of running nodes.
-    - Config: List of changes to the network configurations.
-  - Create a DID
-    - On the homepage, check 'Authenticate a New DID widget'
-      - Choose 'Register from seed'
-      - 'Wallet Seed' field: Type your first name.
-      - 'Alias' field: Type your full name.
-      - Click 'Register DID'.  
-  - View the ledger transactions again and find the newly created DID
-  	- Navigate to 'Domain', then go to the last transaction.
-  - View the ledger genesis file
-    -  From the main menu of the Ledger Browser
-	  - Click on the “Genesis Transaction” link to see the genesis file for the network.
+2. Browse the ledger
+
+3. View the ledger transactions
+  - Domain: List of ledger transactions (DID, scheme, etc.).
+  - Pool: List of running nodes.
+  - Config: List of changes to the network configurations.
+	
+4. Create a DID
+  - On the homepage, check 'Authenticate a New DID widget'
+    - Choose 'Register from seed'
+    - 'Wallet Seed' field: Type your first name.
+    - 'Alias' field: Type your full name.
+    - Click 'Register DID'.  
+	  
+5. View the ledger transactions again and find the newly created DID
+  - Navigate to 'Domain', then go to the last transaction.
+	
+6. View the ledger genesis file
+  -  From the main menu of the Ledger Browser
+  - Click on the “Genesis Transaction” link to see the genesis file for the network.
     - Check connection from genesis transaction to ledger.
-	  - Get the value of 'from' from genesis transaction json file
-      - Navigate to 'Domain', then search for the same value on the ledger.	  
-  - Stop and remove the network
-    - To delete the whole network and data of the ledger.
-	```bash
-	./manage down
-	```
-	- To stop WITHOUT deleting data.
-	```bash
-	./manage stop
-	```
+  - Get the value of 'from' from genesis transaction json file
+    - Navigate to 'Domain', then search for the same value on the ledger.
+  
+7. Stop and remove the network
+  - To delete the whole network and data of the ledger.
+  ```bash
+  ./manage down
+  ```
+  - To stop WITHOUT deleting data.
+  ```bash
+  ./manage stop
+  ```
   
 - Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/vonNetwork.md  
+
+## **Demo:** Resolving DIDs Universally
+
+1. Go to DIF Resolver website: https://dev.uniresolver.io/
+  - If planning on running own instance source codes can be found here: https://github.com/decentralized-identity/universal-resolver/
+
+2. Click on the orange warning icon on the top left of the page and read the caveats
+
+3. Check an example DID from the Sovrin Foundation `did:sov`
+  - Input `did:sov:7Tqg6BwSSWapxgUDm9KKgg` to the 'did-url' bar.
+  - Click 'Resolve'
+  - DID should be found in the Sovrin mainnet: 
+    - Can be with the 'Target DID' key: https://indyscan.io/tx/SOVRIN_MAINNET/domain/54474
+	- Only `7Tqg6BwSSWapxgUDm9KKgg` can be seen in indyscan, because [Sovrin DID Method](https://sovrin-foundation.github.io/sovrin/spec/did-method-spec-template.html) defines how to transform a Sovrin MainNet DID into a DIDDoc on Sovrin mainnet.
+
+4. Check an example DID for the web `did:web`
+  - Input `did:web:did.actor:alice` to the 'did-url' bar.
+    - 'did:web': It works for an entity with a DNS entry including it in the DID after did:web.
+	- The full DIDDoc for the DID resides at the location `https://<dns>/<did>/did.json`. (e.g. https://did.actor/alice/did.json)
+  - Click 'Resolve'
+ 
+6. Other common DID methods:
+  - 'did:github': a DID linked to a Github account (e.g. did:github:gjgd)
+  - 'did:btcr': a DID on the Bitcoin ledger
+  - 'did:erc725': a DID on the Ethereum ledger
+  - 'did:ethr': another DID method using the Ethereum ledger
+  - 'did:ion': a DID rooted in the Bitcoin ledger using Microsoft's DID Method
+  - 'did:ipid': a DID based on the IPFS "Interplanetary File System"
+  - 'did:key': a DID not on a ledger, just a public key wrapped in the DID itself
+
+- Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/didResolvers.md
 
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
