@@ -73,6 +73,7 @@
 1. indy wallet:
   - secure storage
   - agent's secure local storage, used to store DIDs, keys, ledg objects, and verifiable credentials.
+  
 2. aries wallet:
   - mobile agent application similar to a physical wallet holding money, verifiable ids, and important documents.
 
@@ -135,6 +136,24 @@ genesis-file: http://test.bcovrin.vonx.io/genesis
   - configures the storage. 
     - stores keys, DIDs, and Indy ledger.
 	- type of database (e.g. SQLite, PostgreSQL), and credentials
+
+### DIDComm protocol
+
+- DIDComms can be routed through a configuration of mediator agents.
+- DIDComm commonly use the did:peer DID method
+  - Uses DIDs that are not published to a distributed ledger, but that are only shared privately between the communicating parties, usually just two agents.
+
+1. Example DIDComm protocols:
+- connection (DID Exchange) protocol: enables two agents to establish a connection through a series of messages.
+- issue credential protocol: enables an agent to issue a credential to another agent.
+- present proof protocol: enables an agent to request and receive a proof from another agent.
+
+2. Protocol specifications:
+- a series of messages
+- one or more roles for the different participants
+- a serie of named states for each roles
+- a state machine per role that defines the states transitions triggered by messages/events
+![protocol-specs](./images/4_protocol-specs.png)
 
 ## Labs
   
@@ -203,7 +222,7 @@ genesis-file: http://test.bcovrin.vonx.io/genesis
   - Click 'Accept'
 - **Verifier agent logs mobile agent's acceptance of the offer**
 
-9. Resources: Got demo and example on the following resources.
+9. Resources: Git demo and example on the following resources.
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/IssuingHoldingProving.md
 - https://www.youtube.com/watch?v=9WZxlrGMA3s
 
@@ -416,6 +435,11 @@ scripts/run_docker start --help
 - Resource: 
   - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/ACA-PyStartup.md
   - https://github.com/hyperledger/aries-cloudagent-python/blob/main/DevReadMe.md#configuring-aca-py-command-line-parameters
+  
+## **Demo:** Alice Controller
+
+### Alice gets a credential
+- Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/AliceGetsCredential.md
   
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
