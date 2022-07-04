@@ -388,8 +388,31 @@ genesis-file: http://test.bcovrin.vonx.io/genesis
 
 
 ## **Demo:** Agent Startup Options
-1. 
+1. Check ACA-Py version.
+```bash
+scripts/run_docker --version
+```
+  - Error encountered: docker: invalid reference format: repository name must be lowercase.
+    - Solution: On line 40 on `run_docker` file, temporarily remove ARGS, since it contains uppercase symbols on Windows.
+	```
+	# ARGS="${ARGS} -v $(pwd)/../logs:/home/indy/logs"
+    ARGS=""
+    ```
 
+2. Check ACA-Py options.
+```bash
+scripts/run_docker --help
+```
+
+3. Check ACA-Py provision options.
+```bash
+scripts/run_docker provision --help
+```
+
+4. Check ACA-Py start options.
+```bash
+scripts/run_docker start --help
+```
 - Resource: 
   - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/ACA-PyStartup.md
   - https://github.com/hyperledger/aries-cloudagent-python/blob/main/DevReadMe.md#configuring-aca-py-command-line-parameters
