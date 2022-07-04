@@ -51,7 +51,7 @@
 - Infrastructure team: Needs to learn how to install and maintain that node.
 - Open source project contributor: Needs to learn the developer details of the ledger project.
 - Business team: Needs to learn use cases of different ledgers.
-
+  
 ### Methods to take note of
 1. did:web 
   - A non-ledger alternative for an organization to publish DIDs using their domain name’s DNS record.
@@ -64,10 +64,77 @@
   - https://trustbloc.github.io/did-method-orb/
 
 ### Indy Genesis file
-- Genesis file: Contains information about the physical endpoints (IP addresses and ports) for some or all of the nodes in the ledger pool, as well as the cryptographic material necessary to securely communicate with those nodes.
-- Magic seed: `000000000000000000000000Trustee1`
-  - Can be found at being generated in the following directory `/var/lib/indy/sandbox`
-  - Resource: https://stackoverflow.com/questions/59089178/hypelerdger-indy-node-seed-value
+1. Genesis file: Contains information about the physical endpoints (IP addresses and ports) for some or all of the nodes in the ledger pool, as well as the cryptographic material necessary to securely communicate with those nodes.
+  - Magic seed: `000000000000000000000000Trustee1`
+    - Can be found at being generated in the following directory `/var/lib/indy/sandbox`
+    - Resource: https://stackoverflow.com/questions/59089178/hypelerdger-indy-node-seed-value
+
+### Hyperledger Aries 'Wallet'
+1. indy wallet:
+  - secure storage
+  - agent's secure local storage, used to store DIDs, keys, ledg objects, and verifiable credentials.
+2. aries wallet:
+  - mobile agent application similar to a physical wallet holding money, verifiable ids, and important documents.
+
+3. aries agent:
+  - needs to know the location of the genesis file(s).
+  - check if objects (e.g. DIDs, schemas) already exists in the secure storage, or create them if they don't
+  - transport endpoints (e.g. HTTP, web sockets) for messaging other agents.
+  - storage option for keys and other data.
+  - Communication between agent framework and controller.
+
+### Minimum agent requirement
+1. The agent must know about things such as: 
+- how to access a database for secure storage, 
+- how to connect to a ledger, 
+- how to interact with the controller.
+  
+2. Configuration format on CLI format: `--option <extra info>`
+- for genesis file: `--genesis-file <genesis-file>`
+- list options: `--help`
+
+3. Other ways for coniguration:
+- environment variable (e.g. ACAPY_GENESIS_FILE)
+- yaml file:
+```
+# Use the Indy BCovrin Test genesis file:
+genesis-file: http://test.bcovrin.vonx.io/genesis
+```
+![override-config](./images/3_override-config.png)
+
+4. ACA-Py operations:
+- "start from scratch"  
+  - "provision": to be used to establish a new wallet and ledger.
+- "start with data" 
+  - "start": used in normal operations, assume wallet and ledger are ok.
+
+5. ACA-Py pstartup options: 
+- Debug:
+  - for development and debugging.
+  - creates agents that can run without a separate controler. (implements default controller)
+- Admin
+  - configures ACA-Py endpoints to controller.
+- General
+  - configues and manages Python extensions, and non-indy objects.
+- Ledger 
+  - configures and connects agent to a ledger.
+- Logging
+  - configures where logs will reside.
+- Mediation
+  - configures ACA-Py agent being used as a mediator.
+- Multi-tenant
+  - configues ACA-Py agent to run in multi-tenant model.
+  - one ACA-Py instance can serve as an agent for multiple entities.
+- Protocal
+  - handles different protocols.
+- Start-up
+  - options about profiles.
+- Transport
+  - configures the interface (e.g. HTTP, Websocket)
+- Wallet
+  - configures the storage. 
+    - stores keys, DIDs, and Indy ledger.
+	- type of database (e.g. SQLite, PostgreSQL), and credentials
 
 ## Labs
   
@@ -319,5 +386,13 @@
 
 - Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/didResolvers.md
 
+
+## **Demo:** Agent Startup Options
+1. 
+
+- Resource: 
+  - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/ACA-PyStartup.md
+  - https://github.com/hyperledger/aries-cloudagent-python/blob/main/DevReadMe.md#configuring-aca-py-command-line-parameters
+  
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
