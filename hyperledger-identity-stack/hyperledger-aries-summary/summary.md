@@ -155,6 +155,28 @@ genesis-file: http://test.bcovrin.vonx.io/genesis
 - a state machine per role that defines the states transitions triggered by messages/events
 ![protocol-specs](./images/4_protocol-specs.png)
 
+### Aries framework Go
+
+Checking Aries framework Go for mobile agent.
+
+- Aries Go connection framework
+  - ![6_go-framework](./images/6_go-framework.png)
+- Aries Go DIDComm layout
+  - ![7_go-didcomm-framework](./images/7_go-didcomm-framework)
+- Aries Go exchange flow
+  - ![8_go-exchange-flow.png](./images/8_go-exchange-flow.png)
+
+Resources:
+- https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
+- https://wiki.hyperledger.org/display/ARIES/aries-framework-go
+
+- Install 'make' in Windows. **(Better to use Ubuntu WSL2, Windows has lots of path errors)**
+  - https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows
+
+- Install 'Ubuntu' with `wsl2` on Windows machine
+  - https://winaero.com/update-from-wsl-to-wsl-2-in-windows-10/ 
+  - https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros
+  
 ## Labs
   
 ## **Demo:** issuing, holding, proving, and verifying (For Android)
@@ -440,6 +462,9 @@ scripts/run_docker start --help
 
 ### Alice gets a credential
 - Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/AliceGetsCredential.md
+
+### OpenAPI introduction
+- Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/OpenAPIIntroduction.md
   
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
