@@ -167,18 +167,30 @@ Checking Aries framework Go for mobile agent.
   - ![8_go-exchange-flow.png](./images/8_go-exchange-flow.png)
 
 Resources:
-- https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
-- https://wiki.hyperledger.org/display/ARIES/aries-framework-go
+- Build: https://github.com/hyperledger/aries-framework-go/blob/main/docs/test/build.md#Prerequisites-(for-running-tests-and-demos)
+- Mobile agent: https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
+- Main aries go repo: https://wiki.hyperledger.org/display/ARIES/aries-framework-go
+
+- Install Android Studio
+  - android SDK path (Windows):  
+    - More Actions > SDK Manager > Appearance & Behavior > System Setting > Android SDK
 
 - Install 'Ubuntu' with `wsl2` on Windows machine
   - https://winaero.com/update-from-wsl-to-wsl-2-in-windows-10/ 
   - https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros
-  
 
-- Update 'golang' to version 1.16 in Ubuntu 20.04
+- Update 'golang' to version 1.16+ in Ubuntu 20.04
   - https://stackoverflow.com/questions/42186003/how-to-uninstall-go
   - https://tecadmin.net/how-to-install-go-on-ubuntu-20-04/ 
     - Needs to export environment variables per session
+
+- Install 'Node' using 'nvm'
+  - https://heynode.com/tutorial/install-nodejs-locally-nvm/
+
+- Current error: 
+```bash
+make: *** [Makefile:70: bdd-test-js] Error 127
+```
 
 Archived (Not Used):
 -  Install 'make' in Windows. 
