@@ -170,20 +170,25 @@ Resources:
 - https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
 - https://wiki.hyperledger.org/display/ARIES/aries-framework-go
 
-- **Not used:** Install 'make' in Windows. **(Better to use Ubuntu WSL2, Windows has lots of path errors)**
-  - https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows
-
 - Install 'Ubuntu' with `wsl2` on Windows machine
   - https://winaero.com/update-from-wsl-to-wsl-2-in-windows-10/ 
   - https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros
   
-- 'Go' error encountered.
-  - https://stackoverflow.com/questions/54415733/getting-gopath-error-go-cannot-use-pathversion-syntax-in-gopath-mode-in-ubun
-  
+
 - Update 'golang' to version 1.16 in Ubuntu 20.04
   - https://stackoverflow.com/questions/42186003/how-to-uninstall-go
   - https://tecadmin.net/how-to-install-go-on-ubuntu-20-04/ 
     - Needs to export environment variables per session
+
+Archived (Not Used):
+-  Install 'make' in Windows. 
+  - **Better to use Ubuntu WSL2, Windows has lots of path errors**
+  - https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows
+  
+- 'Go' error encountered. 
+  - **Fixed by updating Golang to 1.17**
+  - https://stackoverflow.com/questions/54415733/getting-gopath-error-go-cannot-use-pathversion-syntax-in-gopath-mode-in-ubun
+  
   
 ## Labs
   
