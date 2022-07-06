@@ -169,8 +169,11 @@ Checking Aries framework Go for mobile agent.
 Resources:
 - Build: https://github.com/hyperledger/aries-framework-go/blob/main/docs/test/build.md#Prerequisites-(for-running-tests-and-demos)
 - Mobile agent: https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
+- Aries framework go rest demo: https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/agent_docker.md
 - Main aries go repo: https://wiki.hyperledger.org/display/ARIES/aries-framework-go
 
+
+Troubleshooting:
 - Install Android Studio
   - android SDK path (Windows):  
     - More Actions > SDK Manager > Appearance & Behavior > System Setting > Android SDK
@@ -179,29 +182,38 @@ Resources:
   - https://winaero.com/update-from-wsl-to-wsl-2-in-windows-10/ 
   - https://docs.docker.com/desktop/windows/wsl/#enabling-docker-support-in-wsl-2-distros
 
-- Update 'golang' to version 1.16+ in Ubuntu 20.04
-  - https://stackoverflow.com/questions/42186003/how-to-uninstall-go
-  - https://tecadmin.net/how-to-install-go-on-ubuntu-20-04/ 
-    - Needs to export environment variables per session
+- `package github.com/golang/mock/mockgen@v1.5.0: can only use path@version syntax with 'go get'` error encountered. 
+  - Update 'golang' to version 1.16+ in Ubuntu 20.04
+    - https://stackoverflow.com/questions/42186003/how-to-uninstall-go
+    - https://tecadmin.net/how-to-install-go-on-ubuntu-20-04/ 
+      - Needs to export environment variables per session
+	  ```
+	  export GOROOT=/usr/local/go 
+	  export GOPATH=$HOME/Projects/Proj1 
+	  export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
+	  ```
 
-- Install 'Node' using 'nvm'
-  - https://heynode.com/tutorial/install-nodejs-locally-nvm/
+- `make: *** [Makefile:70: bdd-test-js] Error 127` error: 
+  - **Fixed by installing NodeJS**
+  - Install 'Node' using 'nvm'
+    - https://heynode.com/tutorial/install-nodejs-locally-nvm/
 
-- Current error: 
-```bash
-make: *** [Makefile:70: bdd-test-js] Error 127
-```
-
+- `Please, set "CHROME_BIN" env variable.` error encountered. 
+  - 
+  ```bash
+  export CHROME_BIN="/mnt/c/Program Files/Google/Chrome/Application"
+  ``` 
+ 
 Archived (Not Used):
--  Install 'make' in Windows. 
-  - **Better to use Ubuntu WSL2, Windows has lots of path errors**
-  - https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows
+- `make command not found` on Windows 10 error encountered.
+  -  Install 'make' in Windows. 
+    - **Better to use Ubuntu WSL2, Windows has lots of path errors**
+    - https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows
   
-- 'Go' error encountered. 
+- `package github.com/golang/mock/mockgen@v1.5.0: can only use path@version syntax with 'go get'` error encountered. 
   - **Fixed by updating Golang to 1.17**
   - https://stackoverflow.com/questions/54415733/getting-gopath-error-go-cannot-use-pathversion-syntax-in-gopath-mode-in-ubun
-  
-  
+ 
 ## Labs
   
 ## **Demo:** issuing, holding, proving, and verifying (For Android)
@@ -491,5 +503,86 @@ scripts/run_docker start --help
 ### OpenAPI introduction
 - Resource: https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173xV2/OpenAPIIntroduction.md
   
+## **Demo:** Running mobile agent go framework
+1. Setup environment. (For Windows 10)[Check Aries framework Go > Troubleshooting for in depth instructions]
+  - On Windows:
+    - Download and install Docker Desktop
+    - Download and install Ubuntu
+    - Configure Ubuntu with WSL2
+    - Link Ubuntu to Docker Desktop through WSL2  
+	- Launch Ubuntu
+  - On Ubuntu:  
+    - Install go version 1.16+
+	```bash
+	sudo apt update
+	sudo apt install golang
+	```
+	  - Check if installation is successful
+	  ```bash
+	  go version
+	  ```
+	- Install 'node' through 'nvm'
+	```bash
+	wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+	export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+	```
+	  - Open a new Ubuntu window, and verify 'nvm' installation
+	  ```bash
+	  command -v nvm
+	  ```
+	  - Install 'node' using 'nvm'
+	  ```bash
+	  nvm install --lts
+	  ```
+	  - Verify if 'node' has been installed
+	  ```bash
+	  node --version
+	  ```
+	- Install 'make'
+	```bash
+	sudo apt update
+	sudo apt install make
+	```
+	  - Verify if 'make' has been installed
+	  ```bash
+	  make -version
+	  ```
+	- Set environment variables
+    ```bash
+  	export GOROOT=/usr/local/go 
+	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
+	export CHROME_BIN="/mnt/c/Program Files/Google/Chrome/Application"
+    ```
+
+2. Clone 'aries-framework-go'
+```bash
+git clone https://github.com/hyperledger/aries-framework-go.git
+```
+- Go in the directory
+```bash
+cd aries-framework-go
+```
+
+3. Run 'make' command
+```bash
+make all
+```
+- Error encountered: Chrome test failed, due to not being responsive.
+  - **Skipped for now**
+  
+4. Build local rest agent.
+```bash
+make agent-rest-docker
+``` 
+
+5. Run contianer.
+```bash
+docker run aries-framework-go/agent-rest start [flags]
+```
+- `Error: Neither api-host (command line flag) nor ARIESD_API_HOST (environment variable) have been set.` error encountered
+  - Fix ongoing
+
+
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
+
