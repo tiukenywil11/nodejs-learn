@@ -168,8 +168,9 @@ Checking Aries framework Go for mobile agent.
 
 Resources:
 - Build: https://github.com/hyperledger/aries-framework-go/blob/main/docs/test/build.md#Prerequisites-(for-running-tests-and-demos)
-- Mobile agent: https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
-- Aries framework go rest demo: https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/agent_docker.md
+- [Skipped] Mobile agent: https://github.com/hyperledger/aries-framework-go/blob/main/cmd/aries-agent-mobile/README.md
+- [Skipped] Aries framework go rest demo: https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/agent_docker.md
+- Aries OpenAPI demo: https://github.com/hyperledger/aries-framework-go/blob/main/docs/rest/openapi_demo.md
 - Main aries go repo: https://wiki.hyperledger.org/display/ARIES/aries-framework-go
 
 
@@ -563,7 +564,7 @@ git clone https://github.com/hyperledger/aries-framework-go.git
 cd aries-framework-go
 ```
 
-3. Run 'make' command
+3. [Skipped] Run 'make' command
 ```bash
 make all
 ```
@@ -575,13 +576,26 @@ make all
 make agent-rest-docker
 ``` 
 
-5. Run contianer.
+5. [Skipped] Run container. 
 ```bash
 docker run aries-framework-go/agent-rest start [flags]
 ```
 - `Error: Neither api-host (command line flag) nor ARIESD_API_HOST (environment variable) have been set.` error encountered
-  - Fix ongoing
+  - Solution: Run the follwing template **(Not yet fully working)**
+  ```bash
+  docker run aries-framework-go/agent-rest start --api-host localhost:8080 --database-type mem --inbound-host http@localhost:8081,ws@localhost:8082 --inbound-host-external http@https://example.com:8081,ws@ws://localhost:8082 --webhook-url localhost:8082 --agent-default-label MyAgent
+  ```
+  
+6. Run Swagger API container
+```bash
+make run-openapi-demo
+```
+- Access Alice OpenAPI `http://localhost:8089/openapi/`
+- Access Bob OpenAPI `http://localhost:9089/openapi/`
 
+- Tested did-exchange 
+  - GET `/connections`: Error encountered cannot fetch
+    - Solution: Manually went to `https://localhost:8082/connections`, and accepted certificate.
 
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
