@@ -615,7 +615,7 @@ make run-openapi-demo
 - with VDR function: https://github.com/hyperledger/aries-framework-go/blob/v0.1.8/pkg/framework/aries/framework.go#L262
 - storage compatibility matrix: https://github.com/hyperledger/aries-framework-go/blob/main/docs/storage_compatibility_matrix.md
 
-5. Create new go project.
+5. Create new go project. [manual-aries-go](https://github.com/tiukenywil11/tech-stack-learn/tree/main/hyperledger-identity-stack/hyperledger-aries-summary/manual-aries-go)
   - Import the following: https://pkg.go.dev/github.com/hyperledger/aries-framework-go-ext/component/vdr/indy
   
 6. Importing packages
@@ -624,6 +624,7 @@ go get github.com/hyperledger/aries-framework-go-ext/component/vdr/indy
 go get github.com/hyperledger/indy-vdr/wrappers/golang/vdr
 ``` 
 - https://stackoverflow.com/questions/24855081/how-do-i-import-a-specific-version-of-a-package-using-go-get
+
  
 ### Errors:
 1. Unit test failing for vdr-orb
