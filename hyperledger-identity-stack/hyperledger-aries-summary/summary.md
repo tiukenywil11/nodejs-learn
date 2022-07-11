@@ -551,6 +551,7 @@ scripts/run_docker start --help
 	- Set environment variables
     ```bash
   	export GOROOT=/usr/local/go 
+	export GOPATH=<insert project directory, imports will be saved here>
 	export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
 	export CHROME_BIN="/mnt/c/Program Files/Google/Chrome/Application"
     ```
@@ -586,7 +587,7 @@ docker run aries-framework-go/agent-rest start [flags]
   docker run aries-framework-go/agent-rest start --api-host localhost:8080 --database-type mem --inbound-host http@localhost:8081,ws@localhost:8082 --inbound-host-external http@https://example.com:8081,ws@ws://localhost:8082 --webhook-url localhost:8082 --agent-default-label MyAgent
   ```
   
-6. Run Swagger API container
+6. Run Swagger API container: 
 ```bash
 make run-openapi-demo
 ```
@@ -596,6 +597,69 @@ make run-openapi-demo
 - Tested did-exchange 
   - GET `/connections`: Error encountered cannot fetch
     - Solution: Manually went to `https://localhost:8082/connections`, and accepted certificate.
+
+### **POC:**: Using hyperledger indy ledger for aries-framework-go
+
+1. Specify ledger url for hyperledger aries: 
+  - Reference: 
+    - https://discord.com/channels/905194001349627914/994808520421687306/994965196084891678
+	- https://github.com/hyperledger/aries-framework-go-ext/tree/main/component/vdr/indy
+
+2. Cloned 'hyperledger-aries-agent-go-ext'
+3. Basing connection to indy-ledger on the following path. `https://github.com/hyperledger/aries-framework-go-ext/tree/main/test/bdd/vdr`
+  - Assume there should be `aries-framework-go-ext/test/bdd/vdr/indy`
+  - Because there are examples for `orb` and `trustbloc` here: `https://github.com/hyperledger/aries-framework-go-ext/tree/main/component/vdr`
+- Current `aries-framework-go` uses `trustbloc/sidetree` to act as `didresolver` 
+
+4. Check Aries framework module
+- with VDR function: https://github.com/hyperledger/aries-framework-go/blob/v0.1.8/pkg/framework/aries/framework.go#L262
+- storage compatibility matrix: https://github.com/hyperledger/aries-framework-go/blob/main/docs/storage_compatibility_matrix.md
+
+5. Create new go project.
+  - Import the following: https://pkg.go.dev/github.com/hyperledger/aries-framework-go-ext/component/vdr/indy
+  
+6. Importing packages
+```
+go get github.com/hyperledger/aries-framework-go-ext/component/vdr/indy
+go get github.com/hyperledger/indy-vdr/wrappers/golang/vdr
+``` 
+- https://stackoverflow.com/questions/24855081/how-do-i-import-a-specific-version-of-a-package-using-go-get
+ 
+### Errors:
+1. Unit test failing for vdr-orb
+- Running:
+```
+make vdr-orb-bdd-test
+```
+- Error encountered:
+```
+--- Failed steps:
+
+  Scenario Outline:  # features/orb_e2e.feature:13
+    Then Execute shell script "./create_follow_activity.sh" # features/orb_e2e.feature:14
+      Error: exit status 1
+
+
+1 scenarios (1 failed)
+10 steps (1 failed, 9 skipped)
+1m38.253637439s
+```
+
+2. Cannot run indy vdr as standalone.
+- Running
+```
+cd component/vdr/indy/
+go run .
+```
+Error encountered:
+```
+package github.com/hyperledger/aries-framework-go-ext/component/vdr/indy is not a main package
+```
+Ongoing:
+- Studying GoLang packages, planning to create custom Go code to use indy-vdr.
+
+Resources:
+- Golang Crash Course: https://youtu.be/yyUHQIec83I
 
 ## Resources
 - https://github.com/cloudcompass/ToIPLabs/blob/main/docs/LFS173x
